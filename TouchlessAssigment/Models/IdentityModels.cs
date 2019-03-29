@@ -29,5 +29,7 @@ namespace TouchlessAssigment.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<TouchlessAssigment.Models.Activity> Activities { get; set; }
     }
 }
