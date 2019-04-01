@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using TouchlessAssigment.Models;
+
+using Newtonsoft.Json;
 
 namespace TouchlessAssigment.Controllers
 {
@@ -17,10 +15,11 @@ namespace TouchlessAssigment.Controllers
         };
         string InAgentMacId = "00 - 14 - 22 - 01 - 23 - 45";
         string OutAgentMacId = "00 - 14 - 22 - 01 - 23 - 46";
-       
-        public string Get()
+       [HttpGet]
+        public string index()
         {
-            return NewActivity(v, InAgentMacId, OutAgentMacId).ToString();
+            var result = JsonConvert.SerializeObject( NewActivity(v, InAgentMacId, OutAgentMacId));
+            return result;
         }
 
         public Activity NewActivity (Viechle viecle ,string inMacID, string outMacId)
@@ -30,22 +29,23 @@ namespace TouchlessAssigment.Controllers
                 AgentMacId = string.IsNullOrEmpty(inMacID)?outMacId :inMacID
                 
             };
-            activity.Viechle.PlateNumber = viecle.PlateNumber;
-            activity.Viechle.TimeStamp = viecle.TimeStamp;
+
+            activity.Viechle = new Viechle
+            {
+                PlateNumber = viecle.PlateNumber,
+                TimeStamp = viecle.TimeStamp
+
+            };
+
+           
             return activity;
         }
         private Models.Type GetActivityType(string inMacID, string outMacId)
         {
-            if ((string.IsNullOrEmpty(inMacID) && (string.IsNullOrEmpty(outMacId)) )||(!string.IsNullOrEmpty(inMacID) && (!string.IsNullOrEmpty(outMacId))))
-            {
-                throw new EntryPointNotFoundException();
-            }
-            else
-            {
-                if(string.IsNullOrEmpty(inMacID))
-                return Models.Type.Out;
+                if(string.IsNullOrEmpty(outMacId))
                 return Models.Type.In;
-            }
+                return Models.Type.Out;
+            
         }
     }
 }

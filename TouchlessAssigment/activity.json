@@ -1,0 +1,29 @@
+﻿{
+	"102123": {
+		"Type": "IN",
+		"OUTAgentMACID": "00-14-22-01-23-45",
+		"PlateNumber": {
+			"Image": "/poll/data/date0/img.png",
+			"Number": "ABC1234",
+			"TimeStamp": 5901291
+		}
+	},
+	"102124": {
+		"Type": "OUT",
+		"OUTAgentMACID": "00-14-22-01-31-45",
+		"PlateNumber": {
+			"Image": "/poll/data/date0/img1.png",
+			"Number": "ABC1234",
+			"TimeStamp": 5991291
+		}
+	},
+	"102125": {
+		"Type": "IN",
+		"INAgentMACID": "00-14-22-01-63-45",
+		"PlateNumber": {
+			"Image": "/poll/data/date1/img2.png",
+			"Number": "ABC1234",
+			"TimeStamp": 6001239
+		}
+	}
+}
